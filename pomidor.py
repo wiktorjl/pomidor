@@ -138,7 +138,7 @@ def run_timer(duration_secs, label, autostart=False):
     label_color = CYAN if label == "FOCUS" else GREEN
 
     print(f"\n{BOLD}{label_color}{label}{RESET}")
-    print(f"{DIM}[SPACE] start/stop  [q] quit{RESET}")
+    print(f"{DIM}[SPACE] start/stop  [s] skip  [q] quit{RESET}")
     status = "Running" if running else "Paused "
     print(f"{status} {MAGENTA}{format_time(remaining)}{RESET}", end="", flush=True)
 
@@ -148,6 +148,9 @@ def run_timer(duration_secs, label, autostart=False):
         if key == " ":
             running = not running
             last_tick = time.time()
+        elif key == "s":
+            print(f"\n\n{DIM}Skipping...{RESET}")
+            return "skip"
         elif key == "q":
             print(f"\n\n{DIM}Quitting...{RESET}")
             return None
